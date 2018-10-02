@@ -1,0 +1,29 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+		   xmlns:tns="http://ws.indrastore.indracompany.com.br/generated"
+           targetNamespace="http://ws.indrastore.indracompany.com.br/generated" elementFormDefault="qualified">
+
+	<xs:element name="ListaProdutosRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="nome" type="xs:string" nillable="true" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="ListaProdutosResponse">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="produtoTO" type="tns:produtoTO" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="produtoTO">
+		<xs:sequence>
+			<xs:element name="nomeProduto" type="xs:string" />
+			<xs:element name="preco" type="xs:decimal" />
+			<xs:element name="descricaoProduto" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

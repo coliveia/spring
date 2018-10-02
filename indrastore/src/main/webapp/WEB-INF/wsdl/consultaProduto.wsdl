@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://ws.indrastore.indracompany.com.br/generated" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.indrastore.indracompany.com.br/generated" targetNamespace="http://ws.indrastore.indracompany.com.br/generated">
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://ws.indrastore.indracompany.com.br/generated">
+
+	<xs:element name="ListaProdutosRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="nome" nillable="true" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="ListaProdutosResponse">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded" minOccurs="0">
+				<xs:element name="produtoTO" type="tns:produtoTO"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="produtoTO">
+		<xs:sequence>
+			<xs:element name="nomeProduto" type="xs:string"/>
+			<xs:element name="preco" type="xs:decimal"/>
+			<xs:element name="descricaoProduto" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ListaProdutosRequest">
+    <wsdl:part element="tns:ListaProdutosRequest" name="ListaProdutosRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ListaProdutosResponse">
+    <wsdl:part element="tns:ListaProdutosResponse" name="ListaProdutosResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ConsultaProdutoService">
+    <wsdl:operation name="ListaProdutos">
+      <wsdl:input message="tns:ListaProdutosRequest" name="ListaProdutosRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:ListaProdutosResponse" name="ListaProdutosResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConsultaProdutoServiceSoap11" type="tns:ConsultaProdutoService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ListaProdutos">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="ListaProdutosRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ListaProdutosResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConsultaProdutoServiceService">
+    <wsdl:port binding="tns:ConsultaProdutoServiceSoap11" name="ConsultaProdutoServiceSoap11">
+      <soap:address location="http://localhost:8080/indrastore/ws/consultaProdutoService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
